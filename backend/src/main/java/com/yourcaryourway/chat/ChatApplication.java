@@ -1,0 +1,15 @@
+package com.yourcaryourway.chat;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * Point d'entree du PoC de tchat "Your Car Your Way".
+ */
+@SpringBootApplication
+public class ChatApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ChatApplication.class, args);
+    }
+}
