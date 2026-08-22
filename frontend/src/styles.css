@@ -1,0 +1,27 @@
+:root {
+  --color-text: #1c1c1c;
+  --color-muted: #4a4a4a;
+  --color-border: #c9c9c9;
+  --color-surface: #ffffff;
+  --color-background: #f4f4f4;
+  --color-accent: #14532d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem 1rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}

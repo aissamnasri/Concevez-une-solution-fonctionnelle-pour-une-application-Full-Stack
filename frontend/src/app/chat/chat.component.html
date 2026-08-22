@@ -1,0 +1,66 @@
+<section class="chat" aria-labelledby="chat-title">
+  <h2 id="chat-title">Conversation</h2>
+
+  <form class="join" (ngSubmit)="joinConversation()">
+    <div class="field">
+      <label for="sender-name">Votre nom</label>
+      <input
+        id="sender-name"
+        name="senderName"
+        type="text"
+        maxlength="50"
+        autocomplete="off"
+        [ngModel]="senderName()"
+        (ngModelChange)="senderName.set($event)" />
+    </div>
+
+    <div class="field">
+      <label for="conversation-id">Identifiant de conversation</label>
+      <input
+        id="conversation-id"
+        name="conversationId"
+        type="number"
+        min="1"
+        [ngModel]="conversationId()"
+        (ngModelChange)="conversationId.set($event)" />
+    </div>
+
+    <button type="submit">Rejoindre</button>
+
+    <p class="status">
+      Temps réel : {{ connected() ? 'connecté' : 'déconnecté' }}
+    </p>
+  </form>
+
+  @if (errorMessage(); as error) {
+    <p class="error" role="alert">{{ error }}</p>
+  }
+
+  <ul class="messages" aria-live="polite" aria-label="Messages de la conversation">
+    @for (message of messages(); track message.id) {
+      <li>
+        <span class="sender">{{ message.senderName }}</span>
+        <span class="time">{{ message.createdAt | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+        <p class="content">{{ message.content }}</p>
+      </li>
+    } @empty {
+      <li class="empty">Aucun message pour l’instant. Envoyez le premier.</li>
+    }
+  </ul>
+
+  <form class="composer" (ngSubmit)="sendMessage()">
+    <label for="message-content">Écrire un message</label>
+    <div class="composer-row">
+      <input
+        id="message-content"
+        name="content"
+        type="text"
+        maxlength="1000"
+        autocomplete="off"
+        placeholder="Écrire un message…"
+        [ngModel]="draft()"
+        (ngModelChange)="draft.set($event)" />
+      <button type="submit">Envoyer</button>
+    </div>
+  </form>
+</section>
